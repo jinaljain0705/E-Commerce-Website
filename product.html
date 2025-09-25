@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Ticket Booking E-Commerce-Website</title>
+    <link href="./Assets/CSS/fonts.css" rel="stylesheet">
+    <link href="./Assets/CSS/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header Section -->
+    <header class="bg-gray-800 text-white shadow-md">
+        <nav class="container mx-auto flex justify-between items-center px-8 py-5">
+            <!-- Logo -->
+            <a href="./index.html"
+                class="flex items-center gap-3 text-2xl font-bold tracking-wider hover:text-yellow-400 transition duration-300">
+                <i class="bi bi-film text-3xl"></i>
+                <span>Event Booking</span>
+            </a>
+
+            <!-- Menu -->
+            <ul class="flex gap-8 text-lg font-medium">
+                <li><a href="./index.html" class="hover:text-yellow-400 transition px-3 py-2">Home</a></li>
+                <li><a href="./product.html" class="hover:text-yellow-400 transition px-3 py-2">Event Booking</a></li>
+                <li><a href="./cart.html" class="hover:text-yellow-400 transition px-3 py-2">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main class="py-10">
+
+        <!-- Event Booking Form -->
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-3xl mx-auto p-8 mb-10">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">Add New Event</h2>
+
+            <form class="space-y-4">
+                <!-- ID -->
+                <div>
+                    <label for="id" class="block text-gray-700 font-medium mb-1">Event ID</label>
+                    <input type="text" id="id" name="id" placeholder="Enter event ID"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block text-gray-700 font-medium mb-1">Event Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter event name"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Price -->
+                <div>
+                    <label for="price" class="block text-gray-700 font-medium mb-1">Price (₹)</label>
+                    <input type="number" id="price" name="price" placeholder="Enter price"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Date -->
+                <div>
+                    <label for="date" class="block text-gray-700 font-medium mb-1">Event Date</label>
+                    <input type="date" id="date" name="date"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Location -->
+                <div>
+                    <label for="location" class="block text-gray-700 font-medium mb-1">Location</label>
+                    <input type="text" id="location" name="location" placeholder="Enter location"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Seat Type -->
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Seat Types</label>
+                    <div class="flex gap-4">
+                        <label class="flex items-center gap-1">
+                            <input type="checkbox" name="seatType[]" value="VIP"
+                                class="h-4 w-4 text-yellow-500 focus:ring-yellow-400 border-gray-300 rounded"> VIP
+                        </label>
+                        <label class="flex items-center gap-1">
+                            <input type="checkbox" name="seatType[]" value="Regular"
+                                class="h-4 w-4 text-yellow-500 focus:ring-yellow-400 border-gray-300 rounded"> Regular
+                        </label>
+                        <label class="flex items-center gap-1">
+                            <input type="checkbox" name="seatType[]" value="Economy"
+                                class="h-4 w-4 text-yellow-500 focus:ring-yellow-400 border-gray-300 rounded"> Economy
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Stock -->
+                <div>
+                    <label for="stock" class="block text-gray-700 font-medium mb-1">Stock</label>
+                    <input type="number" id="stock" name="stock" placeholder="Enter available stock"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Image -->
+                <div>
+                    <label for="image" class="block text-gray-700 font-medium mb-1">Event Image URL</label>
+                    <input type="text" id="image" name="image" placeholder="Enter image URL"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label for="description" class="block text-gray-700 font-medium mb-1">Description</label>
+                    <textarea id="description" name="description" rows="4" placeholder="Enter event description"
+                        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <div class="text-right">
+                    <button type="submit"
+                        class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded hover:bg-yellow-600 transition">Add
+                        Event</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Event List Table -->
+        <section class="event-list py-10 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="max-w-full mx-auto bg-white shadow-lg rounded-lg p-6">
+                    <h3 class="text-2xl font-bold text-center text-white-600 mb-6">Events List</h3>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border border-gray-200 divide-y divide-gray-200">
+                            <thead class="bg-black-100">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">#</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Event Name</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Price (₹)</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Date</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Location</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Seat Types</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Stock</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Image</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Description</th>
+                                    <th class="px-4 py-2 text-left text-gray-700 font-medium">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <!-- Row 1 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-2">1</td>
+                                    <td class="px-4 py-2">Tech Roast Show</td>
+                                    <td class="px-4 py-2">₹899</td>
+                                    <td class="px-4 py-2">20 Nov 2025</td>
+                                    <td class="px-4 py-2">Bal Gandharva Rang Mandir</td>
+                                    <td class="px-4 py-2">VIP, Regular</td>
+                                    <td class="px-4 py-2">150</td>
+                                    <td class="px-4 py-2 w-32">
+                                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600/et00451786-nxndnffvrc-portrait.jpg"
+                                            class="w-full h-20 object-cover rounded" alt="Tech Roast Show event poster">
+                                    </td>
+                                    <td class="px-4 py-2">After an impactful year of meeting expectations in the tech
+                                        hubs of US, Canada and Europe, Tech Roast Show is coming back to India to
+                                        deliver value all over your Sexy little stakeholders. Socially Inept is a band
+                                        of rogue comedian-engineers and AI chamchas. We once worked soul-crushing tech
+                                        jobs like yours. But we quit when we realized we could take your money instead.
+                                        Now we sell out Broadway theaters and palaces with our viral hit Tech Roast Show
+                                        - an unfair, unhinged, AI-enhanced celebration of humans and the corporations
+                                        that run them.</td>
+                                    <td class="px-4 py-2 space-x-2">
+                                        <button
+                                            class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition">Edit</button>
+                                        <button
+                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-2">2</td>
+                                    <td class="px-4 py-2">Guilty Bystander Live</td>
+                                    <td class="px-4 py-2">₹499</td>
+                                    <td class="px-4 py-2">2 Oct 2025</td>
+                                    <td class="px-4 py-2">P. L. Deshpande Hall</td>
+                                    <td class="px-4 py-2">Regular, Economy</td>
+                                    <td class="px-4 py-2">200</td>
+                                    <td class="px-4 py-2 w-32">
+                                        <img src="https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600/et00301051-apruvcfdum-portrait.jpg"
+                                            class="w-full h-20 object-cover rounded"
+                                            alt="Guilty Bystander Live event poster">
+                                    </td>
+                                    <td class="px-4 py-2">Do we live life or does life happen to us? If you observe
+                                        time, does it pass more slowly? Is red rice actually better than white rice?
+                                        There are no clear answers but there are always jokes. In Punit Pania's most
+                                        distinct yet personal show yet, he hopes to demonstrate that the observer is
+                                        indeed the observed. No Refunds</td>
+                                    <td class="px-4 py-2 space-x-2">
+                                        <button
+                                            class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition">Edit</button>
+                                        <button
+                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-2">2</td>
+                                    <td class="px-4 py-2">Daily Ka Kaam Hai</td>
+                                    <td class="px-4 py-2">₹599</td>
+                                    <td class="px-4 py-2">28 sept 2025</td>
+                                    <td class="px-4 py-2">P. L. Deshpande Hall</td>
+                                    <td class="px-4 py-2">Regular, Economy</td>
+                                    <td class="px-4 py-2">200</td>
+                                    <td class="px-4 py-2 w-32">
+                                        <img src="https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-daily-ka-kaam-hai-by-aakash-gupta-mumbai-show-0-2025-7-24-t-8-28-51.jpg"
+                                            class="w-full h-20 object-cover rounded"
+                                            alt="Daily Ka Kaam Hai event poster">
+                                    </td>
+                                    <td class="px-4 py-2">Stories from his childhood home to his first MNC job after
+                                        graduation, this show gets more personal, more awkward and even more hilarious.
+                                        Is show ko dekhne k baad aap samjah jayengey ki Embarassing aur tragic
+                                        situations Mei fasna Aakash ka daily ka kaam hai.
+                                        So get ready to LOL and fall off your chairs because you are signing up for
+                                        something totally worth it
+                                        "Ye about the show ka paragraph likhna apne ek ghante ka show banana se bhi zada
+                                        tough lagta hai": Aakash</td>
+                                    <td class="px-4 py-2 space-x-2">
+                                        <button
+                                            class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition">Edit</button>
+                                        <button
+                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 4 -->
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-2">2</td>
+                                    <td class="px-4 py-2">Sunburn Festival 2025</td>
+                                    <td class="px-4 py-2">₹7000</td>
+                                    <td class="px-4 py-2">19 Dec 2025</td>
+                                    <td class="px-4 py-2">Mumbai Maharashtra</td>
+                                    <td class="px-4 py-2">VIP, Economy</td>
+                                    <td class="px-4 py-2">200</td>
+                                    <td class="px-4 py-2 w-32">
+                                        <img src="https://assets-in.bmscdn.com/nmcms/events/banner/desktop/media-desktop-sunburn-festival-2025-0-2025-9-23-t-11-30-4.jpg"
+                                            class="w-full h-20 object-cover rounded"
+                                            alt="David Guetta stands with arms raised in front of a glowing monolith on stage, set against a city skyline at night with vibrant lights and a starry sky. Large bold text reads DAVID GUETTA THE MONOLITH TOUR. Logos for RuPay, Tuborg, Sunburn Festival, Hyundai, Johnnie Walker, Tribe, and Space Bound are displayed at the bottom. The scene conveys excitement and anticipation for a major music event.">
+                                    </td>
+                                    <td class="px-4 py-2">Sunburn Festival 2025 ~ Now in Mumbai, Maharashtra
+                                        Asia's biggest dance music festival returns with a brand-new chapter ~ Sunburn
+                                        Festival 2025, now taking over Mumbai, Maharashtra for the first time ever!
+                                        Get ready for a three-day celebration of music, culture, and lifestyle featuring
+                                        massive global headliners, world-class supporting acts, and a community of
+                                        thousands of dance music lovers coming together under one sky.
+                                        Expect top-notch production, jaw-dropping stage designs, cutting-edge visuals,
+                                        and immersive experiences that will redefine the festival landscape. From
+                                        electrifying performances to curated lounges & brand zones alongside gourmet
+                                        experiences - this is Sunburn like you've never seen before.
+                                        Sunburn Festival 2025: Mumbai, Maharashtra becomes the new home of dance music.
+                                    </td>
+                                    <td class="px-4 py-2 space-x-2">
+                                        <button
+                                            class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 transition">Edit</button>
+                                        <button
+                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">Delete</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 border-t border-gray-700 mt-10">
+        <p class="text-sm">Copyright © 2025 <span class="font-semibold text-white">Ticket9 Event Tech Pvt Ltd</span> —
+            All rights reserved.</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="./Assets/JavaScript/script.js"></script>
+</body>
+
+</html>
