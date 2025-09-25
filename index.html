@@ -14,16 +14,17 @@
 <body class="bg-gray-50 text-gray-900">
   <!-- Header Section -->
   <header class="bg-gray-800 text-white shadow-md">
-    <nav class="container mx-auto flex justify-between items-center px-8 py-5">
+    <nav
+      class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-5 gap-4 md:gap-0">
       <!-- Logo -->
       <a href="./index.html"
-        class="flex items-center gap-3 text-2xl font-bold tracking-wider hover:text-yellow-400 transition duration-300">
-        <i class="bi bi-film text-3xl"></i>
+        class="flex items-center gap-2 md:gap-3 text-xl md:text-2xl font-bold tracking-wider hover:text-yellow-400 transition duration-300">
+        <i class="bi bi-film text-2xl md:text-3xl"></i>
         <span>Event Booking</span>
       </a>
 
       <!-- Menu -->
-      <ul class="flex gap-8 text-lg font-medium">
+      <ul class="flex flex-col md:flex-row gap-4 md:gap-8 text-base md:text-lg font-medium">
         <li>
           <a href="./index.html" class="hover:text-yellow-400 transition px-3 py-2">Home</a>
         </li>
@@ -41,22 +42,22 @@
   <main>
     <!-- Banner -->
     <section>
-      <div class="container mx-auto my-8">
+      <div class="container mx-auto my-8 px-4 md:px-0">
         <img src="./Assets/Images/Banner-Image/banner-img.webp" alt="Concert banner image"
           class="w-full rounded-xl shadow-lg">
       </div>
-      <div class="text-center mt-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-snug">
+      <div class="text-center mt-6 px-4 md:px-0">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-snug">
           <span>DISCOVER</span>
           <span class="text-yellow-500">EVENTS</span>
           <span>AROUND YOU</span>
         </h1>
-        <p class="mt-3 text-gray-600 text-lg">Live It Up, Events Anytime, Anywhere</p>
+        <p class="mt-3 text-gray-600 text-base sm:text-lg">Live It Up, Events Anytime, Anywhere</p>
       </div>
     </section>
 
     <!-- Event Cards -->
-    <section class="bg-gray-100 py-10 px-6">
+    <section class="bg-gray-100 py-10 px-4 md:px-6">
       <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Card Template -->
         <!-- Card 1 -->
@@ -74,8 +75,29 @@
             <p class="text-sm text-gray-500">Bal Gandharva Rang Mandir</p>
             <p class="text-sm text-gray-400">Stand up Comedy</p>
             <p class="mt-2 font-semibold text-gray-900">₹ 899 onwards</p>
+
+            <!-- Buttons -->
+            <div class="mt-4 flex gap-3">
+              <a href="./cart.html"
+                class="flex-1 bg-yellow-500 text-white font-semibold px-3 py-2 rounded hover:bg-yellow-600 transition"
+                onclick="addToCart({
+                  id:'evt1',
+                  name:'Tech Roast Show',
+                  price:'899',
+                  date:'20 Nov 2025',
+                  location:'Bal Gandharva Rang Mandir',
+                  seatType:'VIP, Regular'
+                }); return false;">
+                Add To Cart
+              </a>
+              <a href="./product.html"
+                class="flex-1 bg-gray-800 text-white font-semibold px-3 py-2 rounded text-center hover:bg-gray-900 transition">
+                View Booking
+              </a>
+            </div>
           </div>
         </div>
+
         <!-- Card 2 -->
         <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition duration-300">
           <div class="relative">
@@ -91,6 +113,26 @@
             <p class="text-sm text-gray-500">P. L. Deshpande Hall</p>
             <p class="text-sm text-gray-400">Stand up Comedy</p>
             <p class="mt-2 font-semibold text-gray-900">₹ 499</p>
+
+            <!-- Buttons -->
+            <div class="mt-4 flex gap-3">
+              <a href="./cart.html"
+                class="flex-1 bg-yellow-500 text-white font-semibold px-3 py-2 rounded hover:bg-yellow-600 transition"
+                onclick="addToCart({
+              id:'evt2',
+              name: 'Guilty Bystander by Punit Pania',
+              price: 499,
+              date: '2 Oct 2025',
+              location: 'P. L. Deshpande Hall',
+              seatType: 'Regular'
+            }); return false;">
+                Add To Cart
+              </a>
+              <a href="./product.html"
+                class="flex-1 bg-gray-800 text-white font-semibold px-3 py-2 rounded text-center hover:bg-gray-900 transition">
+                View Booking
+              </a>
+            </div>
           </div>
         </div>
         <!-- Card 3 -->
@@ -108,6 +150,26 @@
             <p class="text-sm text-gray-500">P. L. Deshpande Hall</p>
             <p class="text-sm text-gray-400">Stand up Comedy</p>
             <p class="mt-2 font-semibold text-gray-900">₹ 599</p>
+
+            <!-- Buttons -->
+            <div class="mt-4 flex gap-3">
+              <a href="./cart.html"
+                class="flex-1 bg-yellow-500 text-white font-semibold px-3 py-2 rounded hover:bg-yellow-600 transition"
+                onclick="addToCart({
+              id: 'evt3',
+              name: 'Daily Ka Kaam Hai By Aakash Gupta',
+              price: 599,
+              date: '28 Sep 2025',
+              location: 'P. L. Deshpande Hall',
+              seatType: 'Regular'
+            }); return false;">
+                Add To Cart
+              </a>
+              <a href="./product.html"
+                class="flex-1 bg-gray-800 text-white font-semibold px-3 py-2 rounded text-center hover:bg-gray-900 transition">
+                View Booking
+              </a>
+            </div>
           </div>
         </div>
         <!-- Card 4 -->
@@ -125,6 +187,26 @@
             <p class="text-sm text-gray-500">Mumbai Maharashtra</p>
             <p class="text-sm text-gray-400">Concert</p>
             <p class="mt-2 font-semibold text-gray-900">₹ 7000</p>
+
+            <!-- Buttons -->
+            <div class="mt-4 flex gap-3">
+              <a href="./cart.html"
+                class="flex-1 bg-yellow-500 text-white font-semibold px-3 py-2 rounded hover:bg-yellow-600 transition"
+                onclick="addToCart({
+              id: 'evt4',
+              name: 'Sunburn Festival 2025',
+              price: 7000,
+              date: '19 Dec 2025',
+              location: 'Mumbai Maharashtra',
+              seatType: 'VIP, General Admission'
+            }); return false;">
+                Add To Cart
+              </a>
+              <a href="./product.html"
+                class="flex-1 bg-gray-800 text-white font-semibold px-3 py-2 rounded text-center hover:bg-gray-900 transition">
+                View Booking
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -132,14 +214,35 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-400 text-center py-6 border-t border-gray-700 mt-10">
+  <footer class="bg-gray-800 text-gray-400 text-center py-6 border-t border-gray-700 mt-10 px-4 md:px-0">
     <p class="text-sm">
       Copyright © 2025 <span class="font-semibold text-white">Ticket9 Event Tech Pvt Ltd</span> — All rights reserved.
     </p>
   </footer>
 
   <!-- JavaScript -->
-  <script src="./Assets/JavaScript/script.js"></script>
+  <script>
+    function addToCart(eventData) {
+      let cart = localStorage.getItem('cart');
+      cart = cart ? JSON.parse(cart) : [];
+
+      const itemToAdd = {
+        ...eventData,
+        quantity: 1
+      };
+
+      const existingItemIndex = cart.findIndex(item => item.id === itemToAdd.id);
+
+      if (existingItemIndex > -1) {
+        alert(`"${itemToAdd.name}" is already in your cart. You can change the quantity on the Cart page.`);
+      } else {
+        cart.push(itemToAdd);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`"${itemToAdd.name}" has been added to your cart!`);
+      }
+      return false;
+    }
+  </script>
 </body>
 
 </html>

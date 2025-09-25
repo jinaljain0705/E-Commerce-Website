@@ -14,31 +14,38 @@
 <body>
     <!-- Header Section -->
     <header class="bg-gray-800 text-white shadow-md">
-        <nav class="container mx-auto flex justify-between items-center px-8 py-5">
+        <nav
+            class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-8 py-5 gap-4 md:gap-0">
             <!-- Logo -->
             <a href="./index.html"
-                class="flex items-center gap-3 text-2xl font-bold tracking-wider hover:text-yellow-400 transition duration-300">
-                <i class="bi bi-film text-3xl"></i>
+                class="flex items-center gap-2 md:gap-3 text-xl md:text-2xl font-bold tracking-wider hover:text-yellow-400 transition duration-300">
+                <i class="bi bi-film text-2xl md:text-3xl"></i>
                 <span>Event Booking</span>
             </a>
 
             <!-- Menu -->
-            <ul class="flex gap-8 text-lg font-medium">
-                <li><a href="./index.html" class="hover:text-yellow-400 transition px-3 py-2">Home</a></li>
-                <li><a href="./product.html" class="hover:text-yellow-400 transition px-3 py-2">Event Booking</a></li>
-                <li><a href="./cart.html" class="hover:text-yellow-400 transition px-3 py-2">Cart</a></li>
+            <ul class="flex flex-col md:flex-row gap-4 md:gap-8 text-base md:text-lg font-medium">
+                <li>
+                    <a href="./index.html" class="hover:text-yellow-400 transition px-3 py-2">Home</a>
+                </li>
+                <li>
+                    <a href="./product.html" class="hover:text-yellow-400 transition px-3 py-2">Event Booking</a>
+                </li>
+                <li>
+                    <a href="./cart.html" class="hover:text-yellow-400 transition px-3 py-2">Cart</a>
+                </li>
             </ul>
         </nav>
     </header>
 
     <!-- Main Section -->
-    <main>
+    <main class="px-4 sm:px-6 md:px-8">
         <section class="cart py-10 bg-gray-50">
-            <div class="container mx-auto px-4">
+            <div class="container mx-auto px-2 sm:px-4 md:px-6">
                 <h2 class="text-2xl font-bold mb-6">Add To Cart</h2>
 
-                <div class="overflow-x-auto shadow-md rounded-lg border-2 border-black bg-white">
-                    <table class="min-w-full text-center divide-y divide-gray-300">
+                <div class="overflow-x-auto shadow-sm sm:shadow-md rounded-lg border-2 border-black bg-white">
+                    <table class="min-w-full text-center divide-y divide-gray-300 text-sm sm:text-base">
                         <thead class="bg-black text-white">
                             <tr>
                                 <th class="px-4 py-3 font-semibold">Event Id</th>
@@ -54,7 +61,7 @@
                         </thead>
                         <tbody id="cartTable" class="divide-y divide-gray-300">
                             <tr class="hover:bg-gray-50">
-                                <td colspan="7" class="py-6 text-gray-500 text-lg font-semibold">
+                                <td colspan="7" class="py-6 text-gray-500 text-base sm:text-lg font-semibold">
                                     Cart Is Empty...
                                     <a href="index.html" class="text-yellow-500 hover:underline">Book Now...</a>
                                 </td>
@@ -62,12 +69,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
-                    <button
-                        class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300 shadow-sm">
+                <div class="flex flex-col sm:flex-col md:flex-row justify-between items-center mt-6 gap-4">
+                    <button id="clearCartBtn"
+                        class="w-full md:w-auto bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300 shadow-sm">
                         Clear Cart
                     </button>
-                    <div class="text-lg font-bold bg-gray-100 px-4 py-2 rounded-lg shadow-inner">
+                    <div
+                        class="text-lg font-bold bg-gray-100 px-4 py-2 rounded-lg shadow-inner w-full md:w-auto text-center md:text-left">
                         Grand Total: ₹<span id="grandTotal">0</span>
                     </div>
                 </div>
@@ -76,14 +84,142 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-400 text-center py-6 border-t border-gray-700 mt-10">
-        <p class="text-sm">Copyright © 2025 <span class="font-semibold text-white">Ticket9 Event Tech Pvt Ltd</span> —
-            All rights reserved.</p>
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 border-t border-gray-700 mt-10 px-4 md:px-0">
+        <p class="text-sm">
+            Copyright © 2025 <span class="font-semibold text-white">Ticket9 Event Tech Pvt Ltd</span> — All rights
+            reserved.
+        </p>
     </footer>
 
-    <!-- JS -->
-    <script src="./Assets/JavaScript/script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        const STORAGE_KEY = 'cart';
+        const cartTableBody = document.getElementById('cartTable');
+        const grandTotalSpan = document.getElementById('grandTotal');
+        const clearCartButton = document.getElementById('clearCartBtn');
 
+        function getCart() {
+            const storedCart = localStorage.getItem(STORAGE_KEY);
+            try {
+                return storedCart ? JSON.parse(storedCart) : [];
+            } catch (e) {
+                console.error("Error parsing cart data from localStorage:", e);
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+        }
+
+        function calculateGrandTotal(cart) {
+            const total = cart.reduce((acc, item) => {
+                const itemPrice = parseFloat(item.price);
+                return acc + (itemPrice * item.quantity);
+            }, 0);
+
+            grandTotalSpan.textContent = total.toFixed(2);
+        }
+
+        function renderCart() {
+            const cart = getCart();
+            cartTableBody.innerHTML = '';
+
+            if (cart.length === 0) {
+                // Display 'Cart Is Empty' message
+                cartTableBody.innerHTML = `
+                <tr class="hover:bg-gray-50">
+                    <td colspan="9" class="py-6 text-gray-500 text-base sm:text-lg font-semibold">
+                        Cart Is Empty...
+                        <a href="index.html" class="text-yellow-500 hover:underline">Book Now...</a>
+                    </td>
+                </tr>
+            `;
+                calculateGrandTotal([]);
+                clearCartButton.disabled = true;
+                clearCartButton.classList.remove('bg-red-500', 'hover:bg-red-600');
+                clearCartButton.classList.add('bg-gray-400');
+                return;
+            }
+
+            clearCartButton.disabled = false;
+            clearCartButton.classList.remove('bg-gray-400');
+            clearCartButton.classList.add('bg-red-500', 'hover:bg-red-600');
+
+
+            cart.forEach(item => {
+                const row = cartTableBody.insertRow();
+                row.className = 'hover:bg-gray-50';
+
+                const itemTotal = (parseFloat(item.price) * item.quantity).toFixed(2);
+
+                row.innerHTML = `
+                <td class="px-4 py-2">${item.id}</td>
+                <td class="px-4 py-2 text-left">${item.name}</td>
+                <td class="px-4 py-2">₹${parseFloat(item.price).toFixed(2)}</td>
+                <td class="px-4 py-2">${item.date}</td>
+                <td class="px-4 py-2">${item.location}</td>
+                <td class="px-4 py-2">${item.seatType}</td>
+                <td class="px-4 py-2">
+                    <input type="number" 
+                           value="${item.quantity}" 
+                           min="1" 
+                           data-id="${item.id}"
+                           onchange="updateQuantity(this.dataset.id, this.value)"
+                           class="w-16 border border-gray-300 rounded px-1 py-0.5 text-center focus:outline-none focus:ring-1 focus:ring-yellow-400">
+                </td>
+                <td class="px-4 py-2 font-semibold">₹${itemTotal}</td>
+                <td class="px-4 py-2">
+                    <button onclick="removeItem('${item.id}')"
+                            class="bg-red-500 text-white text-sm px-3 py-1 rounded hover:bg-red-600 transition">
+                        Remove
+                    </button>
+                </td>
+            `;
+            });
+
+            calculateGrandTotal(cart);
+        }
+
+        window.updateQuantity = function (itemId, newQuantityStr) {
+            let newQuantity = parseInt(newQuantityStr);
+            // Basic validation
+            if (isNaN(newQuantity) || newQuantity < 1) {
+                newQuantity = 1;
+            }
+
+            const cart = getCart();
+            const itemIndex = cart.findIndex(item => item.id === itemId);
+
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity = newQuantity;
+                saveCart(cart);
+                renderCart();
+            }
+        }
+
+        window.removeItem = function (itemId) {
+            if (confirm('Are you sure you want to remove this item from the cart?')) {
+                let cart = getCart();
+
+                cart = cart.filter(item => item.id !== itemId);
+
+                saveCart(cart);
+                renderCart();
+                alert('Item removed.');
+            }
+        }
+
+        clearCartButton.addEventListener('click', function () {
+            if (confirm('Are you sure you want to clear your entire cart?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                renderCart();
+                alert('Cart cleared successfully.');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
 
 </body>
 
