@@ -38,5 +38,5 @@ Event category filtering and search functionality
 
 Output:
 ![HomePage](https://github.com/jinaljain0705/E-Commerce-Website/blob/main/Output/homePage.png)
-![EventBooking]()
+![EventBooking](https://github.com/jinaljain0705/E-Commerce-Website/blob/main/Output/eventBooking.png)
 ![Cart]()
