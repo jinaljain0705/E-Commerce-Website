@@ -37,6 +37,6 @@ Event category filtering and search functionality
 👉 This project is a simple yet effective demonstration of building a modern ticket booking system with front-end technologies.
 
 Output:
-![HomePage]()
+![HomePage](https://github.com/jinaljain0705/E-Commerce-Website/blob/main/Output/homePage.png)
 ![EventBooking]()
 ![Cart]()
